@@ -90,7 +90,7 @@
 		A68F08EA2B5AC27400DE897F /* StoryBooks */ = {
 			isa = PBXGroup;
 			children = (
-				A6AF5C5E2B5C2FC0005903BC /* AppMVVMModel */,
+				A6AF5C5E2B5C2FC0005903BC /* DIContainer */,
 				A68F09352B5ACC9C00DE897F /* NetworkCall */,
 				A68F09222B5ACAC400DE897F /* TopStoryGroupOne */,
 				A68F09052B5AC7E900DE897F /* ArchiveGroupOne */,
@@ -190,6 +190,7 @@
 		A68F092D2B5ACC0400DE897F /* TopStoryModel */ = {
 			isa = PBXGroup;
 			children = (
+				A6AF5C5F2B5C301E005903BC /* MVVMModel.swift */,
 				A68F092E2B5ACC1800DE897F /* Model.swift */,
 			);
 			path = TopStoryModel;
@@ -212,13 +213,12 @@
 			path = NetworkCall;
 			sourceTree = "<group>";
 		};
-		A6AF5C5E2B5C2FC0005903BC /* AppMVVMModel */ = {
+		A6AF5C5E2B5C2FC0005903BC /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
-				A6AF5C5F2B5C301E005903BC /* MVVMModel.swift */,
 				A6AF5C612B5C306D005903BC /* DIContainer.swift */,
 			);
-			path = AppMVVMModel;
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

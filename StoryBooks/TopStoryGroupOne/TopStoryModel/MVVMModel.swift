@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-//let activityLoader = UIActivityIndicatorView(style: .large)
-
 protocol TopStoriesModelDelegate: AnyObject {
     
     func DidReceivedResponse(data: TopStoriesModel?)
@@ -28,7 +26,6 @@ class TopStoriesViewModel {
     var errorHandler: ((String?) -> Void)?
     
     func getStories() async {
-        //await activityLoader.startAnimating()
         do {
             let storyModel = try await networkCall.fetchStories(url: URL(string: "https://api.nytimes.com/svc/topstories/v2/science.json?api-key=KG3MjLoQuGKVvfZr8wgqlGrgV4sWmjBW")!)
             responseHandler?(storyModel)
@@ -38,16 +35,5 @@ class TopStoriesViewModel {
             errorHandler?(error.localizedDescription)
         }
     }
-    
-//    func getBooks() async {
-//        do {
-//            let bookModel = try await networkCall.fetchBooks(url: URL(string: "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=KG3MjLoQuGKVvfZr8wgqlGrgV4sWmjBW")!)
-//            responseHandler?(bookModel)
-//            print(bookModel)
-//        }
-//        catch (let error){
-//            errorHandler?(error.localizedDescription)
-//        }
-//    }
 }
 

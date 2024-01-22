@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-//let activityLoader = UIActivityIndicatorView(style: .large)
 
 protocol BooksModelDelegate: AnyObject {
     
@@ -28,7 +27,6 @@ class BooksViewModel {
     var errorHandler: ((String?) -> Void)?
     
     func getBooks() async {
-        //await activityLoader.startAnimating()
         do {
             let bookModel = try await networkCall.fetchBooks(url: URL(string: "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=KG3MjLoQuGKVvfZr8wgqlGrgV4sWmjBW")!)
             responseHandler?(bookModel)

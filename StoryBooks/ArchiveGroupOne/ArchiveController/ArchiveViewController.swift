@@ -35,13 +35,10 @@ class ArchiveViewController: UIViewController {
         Task {
             await booksViewModel.getBooks()
         }
-        
+        activityLoader.startAnimating()
         booksViewModel.responseHandler = { [weak self] bookModel in
             DispatchQueue.main.async { [weak self] in
-                self?.data = bookModel?.results?.books
-                self?.activityLoader.hidesWhenStopped = true
-                self?.activityLoader.stopAnimating()
-                self?.tableView.reloadData()
+                self?.DidReceivedResponse(data: bookModel)
             }
         }        
         booksViewModel.errorHandler = { error in
@@ -75,10 +72,8 @@ extension ArchiveViewController: UITableViewDelegate, UITableViewDataSource, Boo
     func DidReceivedResponse(data: BookModel?) {
         DispatchQueue.main.async { [weak self] in
             self?.data = data?.results?.books
-            //self?.tableView.reloadData()
-
-            //self?.data = self?.bookModel?.results?.books
-            //self?.data = data?.results?.books
+            self?.activityLoader.stopAnimating()
+            self?.tableView.reloadData()
 
         }
     }
@@ -89,7 +84,6 @@ extension ArchiveViewController: UITableViewDelegate, UITableViewDataSource, Boo
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             data?.count ?? 0
-            //        return 10
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

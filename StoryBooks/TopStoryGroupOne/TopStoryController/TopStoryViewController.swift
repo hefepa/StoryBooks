@@ -35,17 +35,10 @@ class TopStoryViewController: UIViewController{
             await topStoriesViewModel.getStories()
         }
         
-        
+        activityLoader.startAnimating()
         topStoriesViewModel.responseHandler = { [weak self] storyModel in
             DispatchQueue.main.async { [weak self] in
-                self?.storyModel = storyModel
-                self?.data = storyModel?.results
-                self?.activityLoader.hidesWhenStopped = true
-                self?.activityLoader.stopAnimating()
-                self?.myTableVIew.reloadData()
-                
-//                self?.data = self?.storyModel?.results
-//                self?.myTableVIew.reloadData()
+                self?.DidReceivedResponse(data: storyModel)
             }
         }
         
@@ -80,9 +73,10 @@ class TopStoryViewController: UIViewController{
 extension TopStoryViewController: UITableViewDelegate, UITableViewDataSource, TopStoriesModelDelegate{
     func DidReceivedResponse(data: TopStoriesModel?) {
         DispatchQueue.main.async { [weak self] in
+            self?.storyModel = data
             self?.data = self?.storyModel?.results
+            self?.activityLoader.stopAnimating()
             self?.myTableVIew.reloadData()
-
         }
     }
     
